@@ -1,0 +1,14 @@
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\bin\Debug\net8.0\BusinessObjects.deps.json
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\bin\Debug\net8.0\BusinessObjects.runtimeconfig.json
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\bin\Debug\net8.0\BusinessObjects.dll
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\bin\Debug\net8.0\BusinessObjects.pdb
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.AssemblyReference.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\obj\Debug\net8.0\BusinessObjects.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfoInputs.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfo.cs
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.CoreCompileInputs.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\obj\Debug\net8.0\BusinessObjects.dll
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\obj\Debug\net8.0\refint\BusinessObjects.dll
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\obj\Debug\net8.0\BusinessObjects.pdb
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\obj\Debug\net8.0\BusinessObjects.genruntimeconfig.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\BusinessObjects\obj\Debug\net8.0\ref\BusinessObjects.dll

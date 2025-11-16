@@ -1,0 +1,32 @@
+﻿@page
+@model Tuannahe181942RazorPages.Pages.Staff.Profile.IndexModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<h1>My Profile</h1>
+<hr />
+@if (!string.IsNullOrEmpty(Model.SuccessMessage))
+{
+    <div class="alert alert-success">@Model.SuccessMessage</div>
+}
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <input type="hidden" asp-for="Account.AccountId" />
+            <input type="hidden" asp-for="Account.AccountRole" /> <div class="mb-3">
+                <label asp-for="Account.AccountEmail" class="form-label"></label>
+                <input asp-for="Account.AccountEmail" class="form-control" readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Account.AccountName" class="form-label"></label>
+                <input asp-for="Account.AccountName" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Account.AccountPassword" class="form-label">New Password (leave blank to keep unchanged)</label>
+                <input asp-for="Account.AccountPassword" type="password" class="form-control" value="" />
+            </div>
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+    </div>
+</div>

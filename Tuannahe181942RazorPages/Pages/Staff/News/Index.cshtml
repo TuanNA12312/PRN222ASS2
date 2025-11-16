@@ -1,0 +1,74 @@
+﻿@page
+@model Tuannahe181942RazorPages.Pages.Staff.News.IndexModel
+@{
+    ViewData["Title"] = "News Management";
+}
+
+<h1>News Management</h1>
+
+<p>
+    <button type="button" class="btn btn-primary btn-popup"
+            data-url="/Staff/News/Index?handler=CreatePartial"
+            data-title="Create News Article">
+        Create New
+    </button>
+</p>
+
+<form method="get" class="mb-3">
+    <input type="text" class="form-control" placeholder="Search by title..." asp-for="SearchQuery">
+</form>
+
+<table class="table" id="news-table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.NewsList)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NewsTitle)</td>
+                <td>@Html.DisplayFor(modelItem => item.Category.CategoryName)</td>
+                <td>@(item.NewsStatus == true ? "Active" : "Inactive")</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-info btn-popup"
+                            data-url="/Staff/News/Index?handler=EditPartial&id=@item.NewsArticleId"
+                            data-title="Edit News Article">
+                        Edit
+                    </button> |
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@item.NewsArticleId" style="display:inline;"
+                          onsubmit="return confirm('Are you sure?');">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Kết nối SignalR
+            var connection = new signalR.HubConnectionBuilder()
+                .withUrl("/newsHub") // Giống trong Program.cs
+                .build();
+
+            // Lắng nghe tin nhắn "LoadNews" từ server
+            connection.on("LoadNews", function () {
+                // Khi có tin, tự động reload lại trang
+                // alert("A change was made by another user. Reloading...");
+                location.reload();
+            });
+
+            // Bắt đầu kết nối
+            connection.start().catch(function (err) {
+                return console.error(err.toString());
+            });
+        });
+    </script>
+}

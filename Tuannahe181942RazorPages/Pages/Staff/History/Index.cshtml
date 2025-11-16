@@ -1,0 +1,27 @@
+﻿@page
+@model Tuannahe181942RazorPages.Pages.Staff.History.IndexModel
+@{
+    ViewData["Title"] = "My News History";
+}
+
+<h1>My News History</h1>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Created Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var news in Model.NewsList)
+        {
+            <tr>
+                <td>@news.NewsTitle</td>
+                <td>@news.CreatedDate?.ToString("dd/MM/yyyy")</td>
+                <td>@(news.NewsStatus == true ? "Active" : "Inactive")</td>
+            </tr>
+        }
+    </tbody>
+</table>

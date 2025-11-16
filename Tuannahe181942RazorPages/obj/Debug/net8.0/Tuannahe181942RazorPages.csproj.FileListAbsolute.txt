@@ -1,0 +1,9 @@
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\Tuannahe181942RazorPages\obj\Debug\net8.0\Tuannahe181942RazorPages.csproj.AssemblyReference.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\Tuannahe181942RazorPages\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\Tuannahe181942RazorPages\obj\Debug\net8.0\Tuannahe181942RazorPages.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\Tuannahe181942RazorPages\obj\Debug\net8.0\Tuannahe181942RazorPages.AssemblyInfoInputs.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\Tuannahe181942RazorPages\obj\Debug\net8.0\Tuannahe181942RazorPages.AssemblyInfo.cs
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\Tuannahe181942RazorPages\obj\Debug\net8.0\Tuannahe181942RazorPages.csproj.CoreCompileInputs.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\Tuannahe181942RazorPages\obj\Debug\net8.0\Tuannahe181942RazorPages.MvcApplicationPartsAssemblyInfo.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\Tuannahe181942RazorPages\obj\Debug\net8.0\Tuannahe181942RazorPages.RazorAssemblyInfo.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\Tuannahe181942RazorPages\obj\Debug\net8.0\Tuannahe181942RazorPages.RazorAssemblyInfo.cs

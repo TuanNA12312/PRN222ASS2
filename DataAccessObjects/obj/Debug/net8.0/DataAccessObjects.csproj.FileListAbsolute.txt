@@ -1,0 +1,15 @@
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\bin\Debug\net8.0\DataAccessObjects.deps.json
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\bin\Debug\net8.0\DataAccessObjects.dll
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\bin\Debug\net8.0\DataAccessObjects.pdb
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\bin\Debug\net8.0\BusinessObjects.dll
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\bin\Debug\net8.0\BusinessObjects.pdb
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.csproj.AssemblyReference.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.AssemblyInfoInputs.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.AssemblyInfo.cs
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.csproj.CoreCompileInputs.cache
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\obj\Debug\net8.0\DataAcce.79975846.Up2Date
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.dll
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\obj\Debug\net8.0\refint\DataAccessObjects.dll
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.pdb
+D:\Project\C# (PRN222)\Tuannahe181942_ SE1882_A02\DataAccessObjects\obj\Debug\net8.0\ref\DataAccessObjects.dll
