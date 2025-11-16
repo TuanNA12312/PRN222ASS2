@@ -22,14 +22,13 @@ namespace Tuannahe181942RazorPages.Pages.Staff.News
             _hubContext = hubContext;
         }
 
-        public List<NewsArticle> NewsList { get; set; }
+        public List<NewsArticle> NewsList { get; set; } = new List<NewsArticle>();
         [BindProperty(SupportsGet = true)]
         public string SearchQuery { get; set; }
         [BindProperty]
         public NewsArticle News { get; set; }
         [BindProperty]
-        public List<int> SelectedTagIds { get; set; } // Dùng để nhận Tags từ form
-
+        public List<int> SelectedTagIds { get; set; } = new List<int>();
         // Load trang
         public IActionResult OnGet()
         {
@@ -101,12 +100,22 @@ namespace Tuannahe181942RazorPages.Pages.Staff.News
             {
                 LoadDropdowns();
                 // Cần load lại News object đầy đủ để gửi lại
-                var model = new { News, SelectedTagIds };
-                return Partial("_Edit", model);
+                // Chúng ta trả về 'this' (PageModel) vì _Edit.cshtml cần cả 'News' và 'SelectedTagIds'
+                return Partial("_Edit", this);
             }
 
+            // === SỬA LOGIC CẬP NHẬT ===
             // Lấy AccountId từ Session
-            News.CreatedById = short.Parse(HttpContext.Session.GetString("AccountId"));
+            var accountId = short.Parse(HttpContext.Session.GetString("AccountId"));
+
+            // Gán thông tin cập nhật
+            News.UpdatedById = accountId;
+            News.ModifiedDate = DateTime.Now;
+
+            var originalNews = _newsService.GetNewsArticleById(News.NewsArticleId);
+            News.CreatedById = originalNews.CreatedById;
+            News.CreatedDate = originalNews.CreatedDate;
+
             _newsService.UpdateNewsArticle(News, SelectedTagIds ?? new List<int>());
 
             // Gửi thông báo SignalR

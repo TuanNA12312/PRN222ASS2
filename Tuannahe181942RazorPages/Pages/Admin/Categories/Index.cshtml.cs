@@ -14,7 +14,7 @@ namespace Tuannahe181942RazorPages.Pages.Admin.Categories
             _categoryService = categoryService;
         }
 
-        public List<Category> CategoryList { get; set; }
+        public List<Category> CategoryList { get; set; } = new List<Category>();
 
         [BindProperty(SupportsGet = true)]
         public string SearchQuery { get; set; }
@@ -25,7 +25,6 @@ namespace Tuannahe181942RazorPages.Pages.Admin.Categories
         [TempData]
         public string ErrorMessage { get; set; }
 
-        // 1. Check quyền và Load danh sách (Search)
         public IActionResult OnGet()
         {
             if (HttpContext.Session.GetString("Role") != "Admin")
@@ -36,48 +35,53 @@ namespace Tuannahe181942RazorPages.Pages.Admin.Categories
             return Page();
         }
 
-        // 2. Xử lý Delete (với Confirmation)
         public IActionResult OnPostDelete(short id)
         {
             try
             {
-                // Hàm DeleteCategory trong DAO/Repo của bạn đã có logic kiểm tra ràng buộc
                 _categoryService.DeleteCategory(id);
             }
             catch (Exception ex)
             {
-                // Bắt lỗi "Category is in use" từ DAO
                 ErrorMessage = ex.Message;
             }
             return RedirectToPage("Index", new { SearchQuery = this.SearchQuery });
         }
 
-        // --- YÊU CẦU: POPUP DIALOG HANDLERS ---
+        // --- SỬA LỖI MODEL BINDING ---
 
         // 3. Trả về Partial View cho popup Create
         public IActionResult OnGetCreatePartial()
         {
-            // Chỉ trả về form rỗng
-            return Partial("_Create", new Category());
+            // Khởi tạo Category trên PageModel
+            Category = new Category { IsActive = true }; // Đặt giá trị mặc định nếu muốn
+
+            // Trả về TOÀN BỘ PageModel ('this')
+            return Partial("_Create", this);
         }
 
         // 4. Trả về Partial View cho popup Edit
         public IActionResult OnGetEditPartial(short id)
         {
+            // Gán Category trên PageModel
             Category = _categoryService.GetCategoryById(id);
-            // Trả về form chứa thông tin category
-            return Partial("_Edit", Category);
+
+            // Trả về TOÀN BỘ PageModel ('this')
+            return Partial("_Edit", this);
         }
+
+        // --- HẾT SỬA LỖI ---
 
         // 5. Xử lý Submit từ popup Create
         public IActionResult OnPostCreate()
         {
             if (!ModelState.IsValid)
             {
-                return Partial("_Create", Category); // Trả về form với lỗi validation
+                // Trả về PageModel ('this') với lỗi validation
+                return Partial("_Create", this);
             }
             _categoryService.AddCategory(Category);
-            return new JsonResult(new { success = true }); // Báo cho AJAX biết là thành công
+            return new JsonResult(new { success = true });
         }
 
         // 6. Xử lý Submit từ popup Edit
@@ -85,10 +89,11 @@ namespace Tuannahe181942RazorPages.Pages.Admin.Categories
         {
             if (!ModelState.IsValid)
             {
-                return Partial("_Edit", Category); // Trả về form với lỗi validation
+                // Trả về PageModel ('this') với lỗi validation
+                return Partial("_Edit", this);
             }
             _categoryService.UpdateCategory(Category);
-            return new JsonResult(new { success = true }); // Báo cho AJAX biết là thành công
+            return new JsonResult(new { success = true });
         }
     }
 }

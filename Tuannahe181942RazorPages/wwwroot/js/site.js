@@ -20,15 +20,17 @@ $(function () {
         modalBody.html('<p>Loading content...</p>');
         modal.modal('show');
 
-        // Tải nội dung Partial View
+        // Tải nội dung Partial View bằng AJAX
         $.get(url, function (data) {
             modalBody.html(data);
 
-            // === SỬA LỖI (Thêm vào) ===
-            // Sau khi tải form vào, bảo jQuery Validator "đọc" form mới này
+            // Bảo jQuery Validator "đọc" form mới vừa được tải vào
+            // Điều này RẤT QUAN TRỌNG
             var form = modalBody.find('form');
-            $.validator.unobtrusive.parse(form);
-            // =========================
+            if ($.validator && $.validator.unobtrusive) {
+                $.validator.unobtrusive.parse(form);
+            }
+
         }).fail(function () {
             modalBody.html('<p>Could not load content. Please try again.</p>');
         });
@@ -39,38 +41,40 @@ $(function () {
     // 2. HÀM SUBMIT FORM BÊN TRONG POPUP
     // =================================================================
     $(document).on('submit', '#mainModal form', function (e) {
-        e.preventDefault(); // Ngăn submit
+
+        // NGĂN chặn hành vi submit HTML truyền thống
+        // Đây là lý do code của bạn đang hỏng (không có dòng này)
+        e.preventDefault();
+
         var form = $(this);
 
-        // === SỬA LỖI (Thêm vào) ===
-        // Kiểm tra xem form có hợp lệ (valid) theo các quy tắc không
-        if (!form.valid()) {
-            return; // Nếu không, dừng lại và hiển thị lỗi
+        // Kiểm tra validation (chỉ khi thư viện tồn tại)
+        if ($.validator && !form.valid()) {
+            return; // Nếu không valid, dừng lại và hiển thị lỗi
         }
-        // =========================
 
         var url = form.attr("action");
         var formData = form.serialize();
-
         var modal = $('#mainModal');
         var modalBody = modal.find('.modal-body');
 
-        // Gửi dữ liệu bằng AJAX
+        // Gửi dữ liệu bằng AJAX POST
         $.post(url, formData, function (result) {
 
-            if (result.success) { // Nếu C# trả về { success = true }
+            // Nếu C# trả về { success = true }
+            if (result.success) {
                 modal.modal('hide');
-                location.reload();
+                location.reload(); // Tải lại trang
             } else {
-                // Nếu C# trả về Partial View (do ModelState.IsValid = false)
+                // Nếu C# trả về lỗi (ModelState.IsValid == false)
+                // C# sẽ trả về lại Partial View với lỗi
                 modalBody.html(result);
 
-                // === SỬA LỖI (Thêm vào) ===
-                // Chúng ta vừa tải lại form (với thông báo lỗi)
-                // Phải bảo jQuery Validator "đọc" lại lần nữa
+                // Bảo jQuery Validator "đọc" lại form mới (với lỗi)
                 var newForm = modalBody.find('form');
-                $.validator.unobtrusive.parse(newForm);
-                // =========================
+                if ($.validator && $.validator.unobtrusive) {
+                    $.validator.unobtrusive.parse(newForm);
+                }
             }
         }).fail(function () {
             alert("An error occurred while saving data. Please try again.");

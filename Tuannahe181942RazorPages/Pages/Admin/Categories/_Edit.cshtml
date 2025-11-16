@@ -1,32 +1,32 @@
-﻿@model BusinessObjects.Models.Category
+﻿@model Tuannahe181942RazorPages.Pages.Admin.Categories.IndexModel
 
 <form method="post" asp-page="Admin/Categories/Index" asp-page-handler="Edit">
 
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <input type="hidden" asp-for="CategoryId" />
+    <input type="hidden" asp-for="Category.CategoryId" />
 
     <div class="form-group">
-        <label asp-for="CategoryName" class="control-label"></label>
-        <input asp-for="CategoryName" class="form-control" />
-        <span asp-validation-for="CategoryName" class="text-danger"></span>
+        <label asp-for="Category.CategoryName" class="control-label"></label>
+        <input asp-for="Category.CategoryName" class="form-control" />
+        <span asp-validation-for="Category.CategoryName" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="CategoryDesciption" class="control-label"></label>
-        <textarea asp-for="CategoryDesciption" class="form-control"></textarea>
-        <span asp-validation-for="CategoryDesciption" class="text-danger"></span>
+        <label asp-for="Category.CategoryDesciption" class="control-label"></label>
+        <textarea asp-for="Category.CategoryDesciption" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Category.CategoryDesciption" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="ParentCategoryId" class="control-label"></label>
-        <input asp-for="ParentCategoryId" class="form-control" type="number" />
-        <span asp-validation-for="ParentCategoryId" class="text-danger"></span>
+        <label asp-for="Category.ParentCategoryId" class="control-label"></label>
+        <input asp-for="Category.ParentCategoryId" class="form-control" type="number" />
+        <span asp-validation-for="Category.ParentCategoryId" class="text-danger"></span>
     </div>
 
     <div class="form-group form-check">
         <label class="form-check-label">
-            <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+            <input class="form-check-input" asp-for="Category.IsActive" /> @Html.DisplayNameFor(model => model.Category.IsActive)
         </label>
     </div>
 

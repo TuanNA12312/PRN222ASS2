@@ -46,14 +46,20 @@ namespace Tuannahe181942RazorPages.Pages.Admin.Accounts
         // 3. Trả về Partial View cho popup Create
         public IActionResult OnGetCreatePartial()
         {
-            return Partial("_Create", new SystemAccount());
+            // KHỞI TẠO ĐỐI TƯỢNG ACCOUNT TRÊN PAGEMODEL
+            Account = new SystemAccount();
+
+            // TRẢ VỀ TOÀN BỘ PAGEMODEL (this)
+            return Partial("_Create", this);
         }
 
         // 4. Trả về Partial View cho popup Edit
         public IActionResult OnGetEditPartial(short id)
         {
             Account = _accountService.GetAccountById(id);
-            return Partial("_Edit", Account);
+
+            // TRẢ VỀ TOÀN BỘ PAGEMODEL (this)
+            return Partial("_Edit", this);
         }
 
         // 5. Xử lý Submit từ popup Create

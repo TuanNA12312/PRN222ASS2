@@ -10,7 +10,7 @@ namespace Tuannahe181942RazorPages.Pages.Admin.Reports
         private readonly INewsService _newsService;
         public IndexModel(INewsService newsService) { _newsService = newsService; }
 
-        public List<NewsArticle> NewsList { get; set; }
+        public List<NewsArticle> NewsList { get; set; } = new List<NewsArticle>();
 
         [BindProperty(SupportsGet = true)]
         public DateTime? StartDate { get; set; }

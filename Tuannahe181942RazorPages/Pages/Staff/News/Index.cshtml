@@ -25,28 +25,32 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.NewsList)
+        @if (Model.NewsList != null)
         {
-            <tr>
-                <td>@item.NewsTitle</td>
-                <td>@item.CreatedDate?.ToShortDateString()</td>
-                <td>@(item.NewsStatus == true ? "Active" : "Inactive")</td>
-                <td>@item.Category?.CategoryName</td>
-                <td>
-                    <a href="@Url.Page("Index", new { handler = "EditPartial", id = item.NewsArticleId })"
-                       class="btn btn-info btn-popup"
-                       data-title="Edit Article">
-                        Edit
-                    </a>
+            @foreach (var item in Model.NewsList)
+            {
+                <tr>
+                    <td>@item.NewsTitle</td>
+                    <td>@item.CreatedDate?.ToShortDateString()</td>
+                    <td>@(item.NewsStatus == true ? "Active" : "Inactive")</td>
+                    <td>@item.Category?.CategoryName</td>
+                    <td>
+                        <a href="@Url.Page("Index", new { handler = "EditPartial", id = item.NewsArticleId })"
+                           class="btn btn-info btn-popup"
+                           data-title="Edit Article">
+                            Edit
+                        </a> |
 
-                    <form method="post" asp-page-handler="Delete" asp-route-id="@item.NewsArticleId" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this article?');">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@item.NewsArticleId" style="display:inline;" onsubmit="return confirm('Are you sure?');">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

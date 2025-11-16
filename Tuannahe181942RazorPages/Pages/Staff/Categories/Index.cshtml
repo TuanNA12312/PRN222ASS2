@@ -14,35 +14,46 @@
     </a>
 </p>
 
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
 <table class="table">
     <thead>
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Status</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.CategoryList)
+        @if (Model.CategoryList != null)
         {
-            <tr>
-                <td>@item.CategoryName</td>
-                <td>@item.CategoryDesciption</td>
-                <td>
-                    <a href="@Url.Page("Index", new { handler = "EditPartial", id = item.CategoryId })"
-                       class="btn btn-info btn-popup"
-                       data-title="Edit Category">
-                        Edit
-                    </a>
+            @foreach (var item in Model.CategoryList)
+            {
+                <tr>
+                    <td>@item.CategoryName</td>
+                    <td>@item.CategoryDesciption</td>
+                    <td>@(item.IsActive == true ? "Active" : "Inactive")</td>
+                    <td>
+                        <a href="@Url.Page("Index", new { handler = "EditPartial", id = item.CategoryId })"
+                           class="btn btn-info btn-popup"
+                           data-title="Edit Category">
+                            Edit
+                        </a> |
 
-                    <form method="post" asp-page-handler="Delete" asp-route-id="@item.CategoryId" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this category?');">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@item.CategoryId" style="display:inline;" onsubmit="return confirm('Are you sure?');">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
