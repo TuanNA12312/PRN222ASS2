@@ -14,7 +14,8 @@ namespace Tuannahe181942RazorPages.Pages.Admin.Accounts
             _accountService = accountService;
         }
 
-        public List<SystemAccount> AccountList { get; set; }
+        // Thêm = new List<SystemAccount>(); để khởi tạo
+        public List<SystemAccount> AccountList { get; set; } = new List<SystemAccount>();
 
         [BindProperty(SupportsGet = true)]
         public string SearchQuery { get; set; }
@@ -62,6 +63,19 @@ namespace Tuannahe181942RazorPages.Pages.Admin.Accounts
             {
                 return Partial("_Create", Account); // Trả về form với lỗi
             }
+
+            try
+            {
+                // Lấy tất cả account, tìm ID lớn nhất, rồi + 1
+                // Dùng GetAccounts(null) để đảm bảo lấy hết danh sách
+                var maxId = _accountService.GetAccounts(null).Max(a => a.AccountId);
+                Account.AccountId = (short)(maxId + 1);
+            }
+            catch (InvalidOperationException)
+            {
+                Account.AccountId = 1;
+            }
+
             _accountService.AddAccount(Account);
             return new JsonResult(new { success = true }); // Báo cho AJAX biết là thành công
         }

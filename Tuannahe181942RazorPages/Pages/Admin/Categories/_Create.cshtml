@@ -1,22 +1,36 @@
 ﻿@model BusinessObjects.Models.Category
-@{
-    Layout = null;
-}
 
-<form id="modal-form" method="post" asp-page-handler="Create" asp-page="/Admin/Categories/Index">
+<form method="post" asp-page="Admin/Categories/Index" asp-page-handler="Create">
+
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="mb-3">
-        <label asp-for="CategoryName" class="form-label"></label>
+
+    <div class="form-group">
+        <label asp-for="CategoryName" class="control-label"></label>
         <input asp-for="CategoryName" class="form-control" />
         <span asp-validation-for="CategoryName" class="text-danger"></span>
     </div>
-    <div class="mb-3">
-        <label asp-for="CategoryDesciption" class="form-label"></label>
-        <input asp-for="CategoryDesciption" class="form-control" />
+
+    <div class="form-group">
+        <label asp-for="CategoryDesciption" class="control-label"></label>
+        <textarea asp-for="CategoryDesciption" class="form-control"></textarea>
         <span asp-validation-for="CategoryDesciption" class="text-danger"></span>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Create</button>
+
+    <div class="form-group">
+        <label asp-for="ParentCategoryId" class="control-label"></label>
+        <input asp-for="ParentCategoryId" class="form-control" type="number" />
+        <span asp-validation-for="ParentCategoryId" class="text-danger"></span>
     </div>
+
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+        </label>
+    </div>
+
+    <div class="form-group text-right">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
 </form>

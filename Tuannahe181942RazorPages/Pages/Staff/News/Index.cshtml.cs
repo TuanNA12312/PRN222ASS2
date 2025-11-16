@@ -28,7 +28,7 @@ namespace Tuannahe181942RazorPages.Pages.Staff.News
         [BindProperty]
         public NewsArticle News { get; set; }
         [BindProperty]
-        public List<short> SelectedTagIds { get; set; } // Dùng để nhận Tags từ form
+        public List<int> SelectedTagIds { get; set; } // Dùng để nhận Tags từ form
 
         // Load trang
         public IActionResult OnGet()
@@ -72,7 +72,7 @@ namespace Tuannahe181942RazorPages.Pages.Staff.News
             LoadDropdowns();
             News = _newsService.GetNewsArticleById(id);
             // Lấy các tag đã chọn
-            SelectedTagIds = News.NewsTags.Select(nt => nt.TagId).ToList();
+            SelectedTagIds = News.Tags.Select(nt => nt.TagId).ToList();
             return Partial("_Edit", this); // Gửi cả PageModel vì _Edit cần SelectedTagIds
         }
 
@@ -87,14 +87,14 @@ namespace Tuannahe181942RazorPages.Pages.Staff.News
 
             News.NewsArticleId = $"News{DateTime.Now.Ticks}"; // Tạo ID tạm
             News.CreatedById = short.Parse(HttpContext.Session.GetString("AccountId"));
-            _newsService.AddNewsArticle(News, SelectedTagIds ?? new List<short>());
+            _newsService.AddNewsArticle(News, SelectedTagIds ?? new List<int>());
 
             // Gửi thông báo SignalR
             await _hubContext.Clients.All.SendAsync("LoadNews");
             return new JsonResult(new { success = true });
         }
 
-        // Submit popup Edit
+        // Submit popup Edit    
         public async Task<IActionResult> OnPostEditAsync()
         {
             if (!ModelState.IsValid)
@@ -107,7 +107,7 @@ namespace Tuannahe181942RazorPages.Pages.Staff.News
 
             // Lấy AccountId từ Session
             News.CreatedById = short.Parse(HttpContext.Session.GetString("AccountId"));
-            _newsService.UpdateNewsArticle(News, SelectedTagIds ?? new List<short>());
+            _newsService.UpdateNewsArticle(News, SelectedTagIds ?? new List<int>());
 
             // Gửi thông báo SignalR
             await _hubContext.Clients.All.SendAsync("LoadNews");
